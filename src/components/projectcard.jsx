@@ -5,31 +5,27 @@ class ProjectCard extends Component {
 
 
     render() {
-        const { image, title, description, onViewClick } = this.props;
-
+        const { id, title, description, tags } = this.props;
         return (
-            <a href='#' className='text-decoration-none' >
+            <a href={'/projects/' + String(id)} className='text-decoration-none' >
                 <div className="card h-100 shadow-sm hover-shadow hover-border">
-                    {image && (
-                        <img
-                            src={image}
-                            className="card-img-top"
-                            alt={title}
-                            style={{ height: '200px', objectFit: 'cover' }}
-                        />
-                    )}
+
                     <div className="card-body d-flex flex-column">
                         <h5 className="card-title">{title}</h5>
                         <p className="card-text flex-grow-1">{description}</p>
-
                         <div>
-                            <span className='m-1 badge text-bg-secondary'>tagname</span>
-                            <span className='m-1 badge text-bg-secondary'>tagname</span>
-                            <span className='m-1 badge text-bg-secondary'>tagname</span>
+                            {this.buildTags(tags)}
                         </div>
+
                     </div>
                 </div>
             </a>);
+    }
+
+    buildTags(tags) {
+        if (!tags) return
+        tags = tags.split(',').map((t) => t.trim())
+        return tags.map((val) => <span className='m-1 badge text-bg-secondary'>{val}</span>)
     }
 }
 

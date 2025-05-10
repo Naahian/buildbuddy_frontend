@@ -1,6 +1,8 @@
 // src/pages/Signup.jsx
 import React, { Component } from 'react';
 import Navbar from '../components/navbar';
+import { AuthController } from '../conrollers/auth_ctrl';
+import { redirect } from 'react-router-dom';
 
 class Signup extends Component {
     constructor(props) {
@@ -17,26 +19,24 @@ class Signup extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
+
     handleSubmit = (e) => {
         e.preventDefault();
-        const { password, confirmPassword } = this.state;
-
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
-        }
-
-        // Submit logic here
-        console.log("Sign up data:", this.state);
+        const { name, email, password, confirmPassword } = this.state;
+        AuthController.handleSignup(name, email, password, confirmPassword);
     };
 
     render() {
+        document.body.style = "background:#eee";
+
+
         return (
             <div>
                 <Navbar />
+
                 <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
                     <div className="col-md-6">
-                        <div className="card shadow p-4">
+                        <div className="card shadow-sm p-4">
                             <h3 className="mb-4 text-center">Create an Account</h3>
                             <form onSubmit={this.handleSubmit}>
                                 <div className="mb-3">

@@ -1,6 +1,8 @@
 // src/pages/Login.jsx
 import React, { Component } from 'react';
 import Navbar from '../components/navbar';
+import { AuthController } from '../conrollers/auth_ctrl';
+import { redirect } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
@@ -11,22 +13,32 @@ class Login extends Component {
         };
     }
 
+
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Login submitted:', this.state);
-        // TODO: integrate with Flask backend
+        const { email, password } = this.state;
+        AuthController.handleLogin(email, password);
     };
 
     render() {
+        const { alertMessage, alertType } = this.state;
+        document.body.style = "background:#eee";
+
         return (
             <div>
+                {alertMessage && (
+                    <div className={`alert alert-${alertType}`} role="alert">
+                        {alertMessage}
+                    </div>
+                )}
                 <Navbar />
+                <br />
                 <div className="container d-flex justify-content-center align-items-center mt-5">
-                    <div className="card p-4 shadow" style={{ width: '100%', maxWidth: '400px' }}>
+                    <div className="card p-4 shadow-sm" style={{ width: '100%', maxWidth: '400px' }}>
                         <h2 className="text-center mb-4">Login</h2>
                         <form onSubmit={this.handleSubmit}>
                             <div className="mb-3">

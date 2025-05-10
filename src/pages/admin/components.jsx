@@ -1,55 +1,56 @@
 import React, { Component } from 'react';
+import AdminController from '../../conrollers/admin_ctrl';
+
 
 class ComponentsContent extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            components: [
-                {
-                    id: 1,
-                    name: 'Arduino Uno',
-                    price: 25.0,
-                    description: 'A popular microcontroller board based on the ATmega328P.'
-                }
-            ],
-            form: {
-                name: '',
-                price: '',
-                description: ''
-            }
-        };
+            components: [],
+            name: null,
+            price: null,
+            image: null,
+            description: null,
+        }
+
+        this.controller = new AdminController(this);
     }
 
+    componentDidMount() {
+        this.controller.componentsInitState(); // now the controller can setState
+    }
+
+
     handleInputChange = (e) => {
-        const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
+        e.preventDefault();
+        this.setState({ [e.target.name]: e.target.value });
     };
 
     handleAddComponent = (e) => {
         e.preventDefault();
-        const { name, price, description } = this.state.form;
-        if (!name || !price || !description) return;
+        let { name, price, description, image } = this.state;
 
-        const newComponent = {
-            id: this.state.components.length + 1,
+        if (!name || !price || !description) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        const componentData = {
             name,
-            price: parseFloat(price),
-            description
+            price,
+            description,
+            image
         };
 
-        this.setState({
-            components: [...this.state.components, newComponent],
-            form: { name: '', price: '', description: '' }
-        });
+        this.controller.createComponent(componentData);
     };
 
     handleDeleteComponent = (id) => {
-        const filtered = this.state.components.filter((c) => c.id !== id);
-        this.setState({ components: filtered });
+        this.controller.deleteComponent(id);
     };
 
     render() {
-        const { name, price, description } = this.state.form;
 
         return (
             <div>
@@ -63,7 +64,7 @@ class ComponentsContent extends Component {
                                 type="text"
                                 className="form-control"
                                 name="name"
-                                value={name}
+                                value={this.state.name}
                                 onChange={this.handleInputChange}
                                 placeholder="Component Name"
                                 required
@@ -71,11 +72,23 @@ class ComponentsContent extends Component {
                         </div>
                         <div className="col-md-6">
                             <input
+                                type="text"
+                                className="form-control"
+                                name="image"
+                                value={this.state.image}
+                                onChange={this.handleInputChange}
+                                placeholder="image url"
+                                required
+                            />
+                        </div>
+
+                        <div className="col-md-6">
+                            <input
                                 type="number"
                                 step="0.01"
                                 className="form-control"
                                 name="price"
-                                value={price}
+                                value={this.state.price}
                                 onChange={this.handleInputChange}
                                 placeholder="Price"
                                 required
@@ -85,7 +98,7 @@ class ComponentsContent extends Component {
                             <textarea
                                 className="form-control"
                                 name="description"
-                                value={description}
+                                value={this.state.description}
                                 onChange={this.handleInputChange}
                                 placeholder="Component Description"
                                 rows="3"

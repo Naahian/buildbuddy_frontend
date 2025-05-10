@@ -1,67 +1,65 @@
 import React, { Component } from 'react';
+import AdminController from '../../conrollers/admin_ctrl';
+
 
 class ProjectsContent extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            projects: [
-                {
-                    id: 1,
-                    title: 'Smart Water Monitor',
-                    description: 'IoT-based water quality monitoring system',
-                    tags: 'IoT,Water',
-                    images: 'https://example.com/image1.jpg',
-                    components: 'Water Sensor, WiFi Module'
-                }
-            ],
-            form: {
-                title: '',
-                description: '',
-                tags: '',
-                images: '',
-                components: ''
-            }
-        };
+            projects: [],
+            title: null,
+            image: null,
+            tags: null,
+            components: null,
+            description: null,
+        }
+
+        this.controller = new AdminController(this);
+    }
+
+    componentDidMount() {
+        this.controller.projectsInitState(); // now the controller can setState
     }
 
     handleInputChange = (e) => {
-        const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
+        e.preventDefault();
+        this.setState({ [e.target.name]: e.target.value });
     };
 
     handleAddProject = (e) => {
         e.preventDefault();
-        const { title, description, tags, images, components } = this.state.form;
-        if (!title || !description || !components) return;
+        let { title, image, tags, components, description } = this.state;
 
-        const newProject = {
-            id: this.state.projects.length + 1,
+        // Convert comma-separated strings to arrays
+        components = components.split(',').map(comp => parseInt(comp.trim()))
+            .filter(comp => !isNaN(comp));
+
+        console.log(tags)
+
+        if (!title || !image || !description || components.length === 0) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        const projectData = {
             title,
-            description,
+            image,
+            components,
             tags,
-            images,
-            components
+            description,
         };
 
-        this.setState({
-            projects: [...this.state.projects, newProject],
-            form: {
-                title: '',
-                description: '',
-                tags: '',
-                images: '',
-                components: ''
-            }
-        });
+        this.controller.createProject(projectData);
     };
 
+
+
     handleDeleteProject = (id) => {
-        const filtered = this.state.projects.filter((p) => p.id !== id);
-        this.setState({ projects: filtered });
+        this.controller.deleteProject(id);
     };
 
     render() {
-        const { title, description, tags, images, components } = this.state.form;
 
         return (
             <div>
@@ -75,7 +73,7 @@ class ProjectsContent extends Component {
                                 type="text"
                                 className="form-control"
                                 name="title"
-                                value={title}
+                                value={this.state.title}
                                 onChange={this.handleInputChange}
                                 placeholder="Project Title"
                                 required
@@ -86,7 +84,7 @@ class ProjectsContent extends Component {
                                 type="text"
                                 className="form-control"
                                 name="tags"
-                                value={tags}
+                                value={this.state.tags}
                                 onChange={this.handleInputChange}
                                 placeholder="Tags (comma separated)"
                             />
@@ -95,8 +93,8 @@ class ProjectsContent extends Component {
                             <input
                                 type="text"
                                 className="form-control"
-                                name="images"
-                                value={images}
+                                name="image"
+                                value={this.state.image}
                                 onChange={this.handleInputChange}
                                 placeholder="Image URL"
                             />
@@ -106,9 +104,9 @@ class ProjectsContent extends Component {
                                 type="text"
                                 className="form-control"
                                 name="components"
-                                value={components}
+                                value={this.state.components}
                                 onChange={this.handleInputChange}
-                                placeholder="Components (comma separated)"
+                                placeholder="Components Ids (comma separated)"
                                 required
                             />
                         </div>
@@ -116,7 +114,7 @@ class ProjectsContent extends Component {
                             <textarea
                                 className="form-control"
                                 name="description"
-                                value={description}
+                                value={this.state.description}
                                 onChange={this.handleInputChange}
                                 placeholder="Project Description"
                                 rows="3"

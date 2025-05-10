@@ -4,7 +4,6 @@
         "src\\App.test.js": true,
         "src\\logo.svg": true,
         "src\\reportWebVitals.js": true,
-        "src\\routes.js": true,
         "src\\setupTests.js": true,
         "README.md": true,
         "package.json": true,

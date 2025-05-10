@@ -8,10 +8,12 @@ class ComponentCard extends Component {
     };
 
     render() {
-        const { name, price, image } = this.props;
+        const { name, price, image, id } = this.props;
+        const href = `/components/${id}`
 
         return (
-            <a href='#' className='text-decoration-none'>
+
+            <a href={href} className='text-decoration-none'>
                 <div
                     className="card shadow-sm h-100 hover-border"
                     onClick={this.handleClick}

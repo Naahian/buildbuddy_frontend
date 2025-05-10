@@ -11,9 +11,10 @@ class Dropdown extends Component {
     handleChange = (e) => {
         const selected = e.target.value;
         this.setState({ selected });
-        this.props.onSelect(selected);
+        if (typeof this.props.onSelect === 'function') {
+            this.props.onSelect(e);  // or pass `selected`, depending on your handler
+        }
     };
-
     render() {
         const { options, label, name } = this.props;
         const { selected } = this.state;
@@ -22,7 +23,7 @@ class Dropdown extends Component {
             <div className="mb-3">
                 {label && <label className="form-label">{label}</label>}
                 <select
-                    className="form-select bg-dark text-white"
+                    className="form-select bg-dark text-light border-secondary"
                     name={name}
                     value={selected}
                     onChange={this.handleChange}

@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
+import AdminController from '../../conrollers/admin_ctrl';
+
 
 class UsersContent extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            users: [
-                { id: 1, name: 'John Doe', email: 'john@example.com' },
-                { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
-            ],
+            users: [],
             name: '',
-            email: ''
-        };
+            emai: '',
+            password: '',
+        }
+
+        this.controller = new AdminController(this);
+    }
+
+    componentDidMount() {
+        this.controller.usersInitState(); // now the controller can setState
     }
 
     handleInputChange = (e) => {
@@ -19,26 +26,22 @@ class UsersContent extends Component {
 
     handleAddUser = (e) => {
         e.preventDefault();
-        const { name, email, users } = this.state;
+        const { name, email, password } = this.state;
 
         if (!name || !email) return;
 
         const newUser = {
-            id: users.length + 1,
-            name,
-            email
+            name: name,
+            email: email,
+            password: password
         };
 
-        this.setState({
-            users: [...users, newUser],
-            name: '',
-            email: ''
-        });
+        this.controller.createUser(newUser);
+
     };
 
     handleDeleteUser = (id) => {
-        const filteredUsers = this.state.users.filter(user => user.id !== id);
-        this.setState({ users: filteredUsers });
+        this.controller.deleteUser(id);
     };
 
     render() {
