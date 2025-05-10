@@ -1,5 +1,5 @@
 import { TokenService } from "../services/auth.js"
-const BASE_URL = "http://localhost:5000"; // update for deployed backend
+const BASE_URL = "https://buildbuddy-backend-rjr8.onrender.com"; // update for deployed backend
 
 export const API = {
     welcome: () => {
