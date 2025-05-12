@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Navbar from '../components/navbar';
 import { AuthController } from '../conrollers/auth_ctrl';
-import { redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Signup extends Component {
     constructor(props) {

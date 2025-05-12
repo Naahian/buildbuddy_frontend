@@ -5,6 +5,7 @@ import ComponentCard from '../components/componentcard';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import heroImage from '../assets/hero.jpg';
+import { Link } from 'react-router-dom';
 import ai from '../assets/ai.png';
 import AskBuddyButton from '../components/buddybtn';
 import { API } from '../api/api';

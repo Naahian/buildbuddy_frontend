@@ -3,6 +3,7 @@ import AdminController from '../conrollers/admin_ctrl';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import { CartService } from '../services/cart_service';
+import { Link } from 'react-router-dom';
 
 class ComponentDetailPage extends React.Component {
     constructor(props) {

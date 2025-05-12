@@ -4,6 +4,7 @@ import { OrderService } from '../services/order_service';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import { API } from '../api/api';
+import { Link } from 'react-router-dom';
 
 class CheckoutPage extends React.Component {
     constructor(props) {
