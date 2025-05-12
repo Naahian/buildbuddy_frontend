@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# 🔧 BuildBuddy – DIY Project Builder with AI Assistance
+BuildBuddy is a Flask-based web application that helps users plan and manage DIY projects with ease. It combines traditional component and project management with a smart AI assistant to suggest project ideas and components.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🚀 Project Goals
+Simplify the DIY project-building process for beginners and hobbyists.
 
-## Available Scripts
+Provide an intelligent assistant that suggests components and project ideas based on user input.
 
-In the project directory, you can run:
+Serve as a tool to manage components, orders, and project details in one place.
 
-### `npm start`
+## 🧰 Key Features
+### 🔍 AI Assistant (BuddyAI)
+Takes user input (prompt, difficulty, type, budget).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Returns a list of suggested components and tools.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Helps brainstorm new project ideas.
 
-### `npm test`
+📦 Component Management
+CRUD operations for electronic/mechanical components.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Image support for visual reference.
 
-### `npm run build`
+Price and description for inventory tracking.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+📁 Project Management
+Add and view project details including:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Title, description, tags.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Linked components (via IDs).
 
-### `npm run eject`
+Automatic timestamping for creation date.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+📜 Order System
+Track and place orders for selected components.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Basic user authentication included for admin-level features.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🛠️ Tech Stack
+Backend: Flask (Python), SQLAlchemy ORM
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Frontend: React, (Bootstrap 5 CDN UI)
 
-## Learn More
+Database: MySQL (via Aiven)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Deployment: Render (Flask backend and frontend)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### 🧪 Setup & Run Locally
+Clone the repo:
+```bash
+git clone https://github.com/your-username/buildbuddy.git
+cd buildbuddy
+```
+Set up virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+Install dependencies:
+```bash
+pip install -r requirements.txt
+flask run
+```
+🌍 Live Deployment
+Frontend: https://buildbuddy-frontend.onrender.com/
+Backend API: https://buildbuddy-backend-rjr8.onrender.com/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
