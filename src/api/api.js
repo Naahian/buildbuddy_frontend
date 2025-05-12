@@ -132,7 +132,7 @@ export const API = {
             redirect: "follow"
         };
 
-        const response = await fetch("http://127.0.0.1:5000//buddyai/send_prompt", requestOptions)
+        const response = await fetch(`${BASE_URL}/buddyai/send_prompt`, requestOptions)
         return response.json();
     },
 
