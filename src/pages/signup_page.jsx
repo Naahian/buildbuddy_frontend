@@ -97,7 +97,7 @@ class Signup extends Component {
                             </form>
 
                             <div className="mt-3 text-center">
-                                <small>Already have an account? <a href="/login">Login</a></small>
+                                <small>Already have an account? <Link to="/login">Login</Link></small>
                             </div>
                         </div>
                     </div>

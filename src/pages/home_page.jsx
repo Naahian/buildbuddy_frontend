@@ -88,7 +88,7 @@ function FeaturedProducts(products) {
             </div>
 
             <div className='d-flex justify-content-center pt-5'>
-                <a href='/shop' className=' btn btn-outline-secondary'>see more</a>
+                <Link to='/shop' className=' btn btn-outline-secondary'>see more</Link>
             </div>
         </div>
     </section>;
@@ -181,7 +181,7 @@ function ExploreProjects(projects) {
                     )
                 }
                 <div className='d-flex justify-content-center pt-3'>
-                    <a href='/projects' className=' btn btn-outline-secondary'>see more</a>
+                    <Link to='/projects' className=' btn btn-outline-secondary'>see more</Link>
                 </div>
             </div>
         </div>

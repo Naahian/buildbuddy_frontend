@@ -153,8 +153,8 @@ class CheckoutPage extends React.Component {
                             <p>Order Number: <strong>#{orderId}</strong></p>
                             <p className="text-muted">You will receive an email confirmation shortly.</p>
                             <div className="mt-4">
-                                <a href="/" className="btn btn-primary me-3">Continue Shopping</a>
-                                <a href="/orders" className="btn btn-outline-secondary">View My Orders</a>
+                                <Link to="/" className="btn btn-primary me-3">Continue Shopping</Link>
+                                <Link to="/orders" className="btn btn-outline-secondary">View My Orders</Link>
                             </div>
                         </div>
                     </div>

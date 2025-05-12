@@ -20,11 +20,11 @@ function AskBuddyButton(large = false) {
         WebkitTextFillColor: 'transparent',
     }
 
-    return <a href="/buddyai" className="btn btn-light me-2 shadow" style={gradientBorderStyle}>
+    return <Link to="/buddyai" className="btn btn-light me-2 shadow" style={gradientBorderStyle}>
         <div style={gradientBorderInnerStyle}>
             Ask Buddy AI <i class="bi bi-stars" style={gradientText}></i>
         </div>
-    </a>;
+    </Link>;
 }
 
 export default AskBuddyButton;

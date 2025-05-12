@@ -87,7 +87,7 @@ class ComponentDetailPage extends React.Component {
                             {/* Cart Notification */}
                             {addedToCart && (
                                 <div className="alert alert-success mt-3" role="alert">
-                                    Added to cart! <a href="/cart" className="alert-link">View Cart</a>
+                                    Added to cart! <Link to="/cart" className="alert-link">View Cart</Link>
                                 </div>
                             )}
 
