@@ -1,5 +1,7 @@
 // src/components/ComponentCard.jsx
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 class ComponentCard extends Component {
     handleClick = () => {
@@ -13,7 +15,7 @@ class ComponentCard extends Component {
 
         return (
 
-            <a href={href} className='text-decoration-none'>
+            <Link to={href} className='text-decoration-none'>
                 <div
                     className="card shadow-sm h-100 hover-border"
                     onClick={this.handleClick}
@@ -36,7 +38,7 @@ class ComponentCard extends Component {
 
                     </div>
                 </div>
-            </a>
+            </Link>
         );
     }
 }
